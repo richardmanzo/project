@@ -150,82 +150,163 @@ body {
   .alert {
 	border-radius: 8px;
   }
-
-  /* Add these styles to your style.css file */
-
-.shadow.w-350 {
-    background: white;
-    border-radius: 16px;
-    padding: 25px !important;
-    max-width: 350px;
-    width: 100%;
-}
-
-.img-fluid.rounded-circle {
-    width: 120px;
-    height: 120px;
-    object-fit: cover;
-    border: 5px solid white;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    margin: 0 auto 15px;
-}
-
-.display-4 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #0275d8;
-    margin-bottom: 0;
-}
-
-.text-muted {
-    color: #6c757d !important;
-    font-size: 0.9rem;
-}
-
-.course-year-info {
-    margin: 15px 0;
-}
-
-.info-tag .badge {
-    font-weight: normal;
-    padding: 8px 12px;
-    border: 1px solid #e9ecef;
-}
-
-.about-section {
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 12px;
-    margin: 15px 0;
-    text-align: left;
-}
-
-.about-section h6 {
-    font-size: 0.85rem;
-    margin-bottom: 8px;
-    font-weight: 600;
-}
-
-.about-section p {
-    font-size: 0.9rem;
-    margin-bottom: 0;
-    word-wrap: break-word;
-}
-
-.action-buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-    justify-content: center;
-}
-
-.btn-primary {
-    background-color: #0275d8;
-    border: none;
-}
-
-.btn-warning {
-    background-color: #ffc107;
-    border: none;
-    color: #212529;
-}
+  
+  .shadow.w-350 {
+	background: white;
+	border-radius: 16px;
+	padding: 25px !important;
+	max-width: 350px;
+	width: 100%;
+  }
+  
+  .img-fluid.rounded-circle {
+	width: 120px;
+	height: 120px;
+	object-fit: cover;
+	border: 5px solid white;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+	margin: 0 auto 15px;
+  }
+  
+  .display-4 {
+	font-size: 2rem;
+	font-weight: 700;
+	color: #0275d8;
+	margin-bottom: 0;
+  }
+  
+  .text-muted {
+	color: #6c757d !important;
+	font-size: 0.9rem;
+  }
+  
+  .course-year-info {
+	margin: 15px 0;
+  }
+  
+  .info-tag .badge {
+	font-weight: normal;
+	padding: 8px 12px;
+	border: 1px solid #e9ecef;
+  }
+  
+  .about-section {
+	background-color: #f8f9fa;
+	border-radius: 8px;
+	padding: 12px;
+	margin: 15px 0;
+	text-align: left;
+  }
+  
+  .about-section h6 {
+	font-size: 0.85rem;
+	margin-bottom: 8px;
+	font-weight: 600;
+  }
+  
+  .about-section p {
+	font-size: 0.9rem;
+	margin-bottom: 0;
+	word-wrap: break-word;
+  }
+  
+  .action-buttons {
+	display: flex;
+	gap: 10px;
+	margin-top: 15px;
+	justify-content: center;
+  }
+  
+  .btn-primary {
+	background-color: #0275d8;
+	border: none;
+  }
+  
+  .btn-warning {
+	background-color: #ffc107;
+	border: none;
+	color: #212529;
+  }
+  
+  /* New styles for signup form scrollbar */
+  .signup-form {
+	max-height: 90vh;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+  }
+  
+  .scrollable-content {
+	max-height: 65vh;
+	overflow-y: auto;
+	padding-right: 10px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar {
+	width: 8px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar-track {
+	background: #f1f1f1;
+	border-radius: 10px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar-thumb {
+	background: #0d6efd;
+	border-radius: 10px;
+  }
+  
+  .scrollable-content::-webkit-scrollbar-thumb:hover {
+	background: #0957d0;
+  }
+  
+  /* Details box on home page */
+  .details-box {
+	background-color: white;
+	border-radius: 16px;
+	height: 100%;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+  }
+  
+  .details-box:hover {
+	box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+	transform: translateY(-5px);
+  }
+  
+  .details-title {
+	font-weight: 700;
+	color: #0d6efd;
+	padding-bottom: 15px;
+	border-bottom: 1px solid #e9ecef;
+	margin-bottom: 20px;
+  }
+  
+  .detail-section {
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .detail-heading {
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: #495057;
+	margin-bottom: 10px;
+  }
+  
+  .detail-content {
+	padding-left: 10px;
+  }
+  
+  .detail-content p {
+	margin-bottom: 8px;
+	font-size: 0.95rem;
+  }
+  
+  .address-text, .about-text {
+	background-color: #f8f9fa;
+	padding: 10px;
+	border-radius: 8px;
+	border-left: 3px solid #0d6efd;
+  }
