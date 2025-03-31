@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2022 at 03:08 PM
+-- Generation Time: Apr 01, 2025
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -27,12 +27,17 @@ SET time_zone = "+00:00";
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `fname` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `pp` varchar(255) NOT NULL DEFAULT 'default-pp.png'
+  `pp` varchar(255) NOT NULL DEFAULT 'default-pp.png',
+  `address` text DEFAULT NULL,
+  `year` varchar(50) DEFAULT NULL,
+  `course` varchar(50) DEFAULT NULL,
+  `about` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
