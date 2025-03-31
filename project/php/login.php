@@ -1,9 +1,7 @@
 <?php 
 session_start();
 
-if(isset($_POST['uname']) && 
-   isset($_POST['pass'])){
-
+if(isset($_POST['uname']) && isset($_POST['pass'])){
     include "../db_conn.php";
 
     $uname = $_POST['uname'];
@@ -12,57 +10,70 @@ if(isset($_POST['uname']) &&
     $data = "uname=".$uname;
     
     if(empty($uname)){
-    	$em = "User name is required";
-    	header("Location: ../login.php?error=$em&$data");
-	    exit;
+        $em = "User name is required";
+        header("Location: ../login.php?error=$em&$data");
+        exit;
     }else if(empty($pass)){
-    	$em = "Password is required";
-    	header("Location: ../login.php?error=$em&$data");
-	    exit;
+        $em = "Password is required";
+        header("Location: ../login.php?error=$em&$data");
+        exit;
     }else {
-
-    	$sql = "SELECT * FROM users WHERE username = ?";
-    	$stmt = $conn->prepare($sql);
-    	$stmt->execute([$uname]);
-
-      if($stmt->rowCount() == 1){
-          $user = $stmt->fetch();
-
-          $username =  $user['username'];
-          $password =  $user['password'];
-          $fname =  $user['fname'];
-          $id =  $user['id'];
-          $pp =  $user['pp'];
-
-          if($username === $uname){
-             if(password_verify($pass, $password)){
-                 $_SESSION['id'] = $id;
-                 $_SESSION['fname'] = $fname;
-                 $_SESSION['pp'] = $pp;
-
-                 header("Location: ../home.php");
-                 exit;
-             }else {
-               $em = "Incorect User name or password";
-               header("Location: ../login.php?error=$em&$data");
-               exit;
-            }
-
-          }else {
-            $em = "Incorect User name or password";
+        // Add this line to check connection
+        if(!$conn) {
+            $em = "Database connection failed";
             header("Location: ../login.php?error=$em&$data");
             exit;
-         }
+        }
 
-      }else {
-         $em = "Incorect User name or password";
-         header("Location: ../login.php?error=$em&$data");
-         exit;
-      }
+        $sql = "SELECT * FROM users WHERE username = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$uname]);
+
+        if($stmt->rowCount() == 1){
+            $user = $stmt->fetch();
+
+            $username = $user['username'];
+            $password = $user['password'];
+            $fname = $user['fname'];
+            $id = $user['id'];
+            $pp = $user['pp'];
+
+            if($username === $uname){
+                // Check if password is actually hashed
+                if(strlen($password) < 20) {
+                    // Password is not hashed properly
+                    $em = "Account setup issue. Contact administrator.";
+                    header("Location: ../login.php?error=$em&$data");
+                    exit;
+                }
+                
+                if(password_verify($pass, $password)){
+                    // Set session variables
+                    $_SESSION['id'] = $id;
+                    $_SESSION['fname'] = $fname;
+                    $_SESSION['pp'] = $pp;
+
+                    // Redirect to home page
+                    header("Location: ../home.php");
+                    exit;
+                }else {
+                    $em = "Incorrect User name or password (password verification failed)";
+                    header("Location: ../login.php?error=$em&$data");
+                    exit;
+                }
+            }else {
+                $em = "Incorrect User name or password (username mismatch)";
+                header("Location: ../login.php?error=$em&$data");
+                exit;
+            }
+        }else {
+            $em = "User not found in database";
+            header("Location: ../login.php?error=$em&$data");
+            exit;
+        }
     }
-
-
 }else {
-	header("Location: ../login.php?error=error");
-	exit;
+    header("Location: ../login.php?error=Invalid form submission");
+    exit;
 }
+?>
