@@ -58,12 +58,30 @@
 		  </div>
 
 		  <div class="mb-3">
-		    <label class="form-label">Course and School Year</label>
-		    <input type="text" 
-		           class="form-control"
-		           name="course">
-				   value="<?php echo (isset($_GET['course']))?$_GET['course']:"" ?>">
-		  </div>
+  <label class="form-label">Year Level</label>
+  <select class="form-control" name="year">
+    <option value="">Select Year Level</option>
+    <option value="1st Year" <?php echo (isset($_GET['year']) && $_GET['year'] == "1st Year")?"selected":"" ?>>1st Year</option>
+    <option value="2nd Year" <?php echo (isset($_GET['year']) && $_GET['year'] == "2nd Year")?"selected":"" ?>>2nd Year</option>
+    <option value="3rd Year" <?php echo (isset($_GET['year']) && $_GET['year'] == "3rd Year")?"selected":"" ?>>3rd Year</option>
+    <option value="4th Year" <?php echo (isset($_GET['year']) && $_GET['year'] == "4th Year")?"selected":"" ?>>4th Year</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Course</label>
+  <select class="form-control" name="course">
+    <option value="">Select Course</option>
+    <option value="ACT" <?php echo (isset($_GET['course']) && $_GET['course'] == "ACT")?"selected":"" ?>>ACT</option>
+    <option value="BSIS" <?php echo (isset($_GET['course']) && $_GET['course'] == "BSIS")?"selected":"" ?>>BSIS</option>
+    <option value="BSCS" <?php echo (isset($_GET['course']) && $_GET['course'] == "BSCS")?"selected":"" ?>>BSCS</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label">About Yourself</label>
+  <textarea class="form-control" name="about" rows="3"><?php echo (isset($_GET['about']))?$_GET['about']:"" ?></textarea>
+</div>
 		  
 		  <button type="submit" class="btn btn-primary">Sign Up</button>
 		  <a href="login.php" class="link-secondary">Login</a>

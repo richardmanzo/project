@@ -9,6 +9,9 @@ if(isset($_POST['fname']) &&
     $fname = $_POST['fname'];
     $uname = $_POST['uname'];
     $pass = $_POST['pass'];
+    $year = $_POST['year'];
+   $course = $_POST['course'];
+   $about = $_POST['about'];
 
     $data = "fname=".$fname."&uname=".$uname;
     
@@ -63,6 +66,22 @@ if(isset($_POST['fname']) &&
             header("Location: ../index.php?error=$em&$data");
             exit;
          }
+
+// Update the data string to include new fields
+$data = "fname=".$fname."&uname=".$uname."&year=".$year."&course=".$course."&about=".$about;
+
+// Update the SQL queries
+// For with profile picture
+$sql = "INSERT INTO users(fname, username, password, pp, year, course, about) 
+       VALUES(?,?,?,?,?,?,?)";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$fname, $uname, $pass, $new_img_name, $year, $course, $about]);
+
+// For without profile picture
+$sql = "INSERT INTO users(fname, username, password, year, course, about) 
+       VALUES(?,?,?,?,?,?)";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$fname, $uname, $pass, $year, $course, $about]);
 
         
       }else {

@@ -7,7 +7,6 @@ include "db_conn.php";
 include 'php/User.php';
 $user = getUserById($_SESSION['id'], $conn);
 
-
  ?>
 <!DOCTYPE html>
 <html>
@@ -25,13 +24,41 @@ $user = getUserById($_SESSION['id'], $conn);
     	<div class="shadow w-350 p-3 text-center">
     		<img src="upload/<?=$user['pp']?>"
     		     class="img-fluid rounded-circle">
-            <h3 class="display-4 "><?=$user['fname']?></h3>
-            <a href="edit.php" class="btn btn-primary">
-            	Edit Profile
-            </a>
-             <a href="logout.php" class="btn btn-warning">
-                Logout
-            </a>
+            <h3 class="display-4"><?=$user['fname']?></h3>
+            <p class="text-muted">@<?=$user['username']?></p>
+            
+            <!-- Display Course and Year -->
+            <?php if(!empty($user['course']) || !empty($user['year'])): ?>
+            <div class="course-year-info">
+                <p class="info-tag">
+                    <span class="badge bg-light text-dark mb-2">
+                        <?php 
+                        $details = [];
+                        if(!empty($user['course'])) $details[] = $user['course'];
+                        if(!empty($user['year'])) $details[] = $user['year'];
+                        echo implode(' | ', $details);
+                        ?>
+                    </span>
+                </p>
+            </div>
+            <?php endif; ?>
+            
+            <!-- Display About information -->
+            <?php if(!empty($user['about'])): ?>
+            <div class="about-section">
+                <h6 class="text-start text-muted">About Me</h6>
+                <p class="text-start"><?=nl2br(htmlspecialchars($user['about']))?></p>
+            </div>
+            <?php endif; ?>
+            
+            <div class="action-buttons">
+                <a href="edit.php" class="btn btn-primary">
+                    Edit Profile
+                </a>
+                <a href="logout.php" class="btn btn-warning">
+                    Logout
+                </a>
+            </div>
 		</div>
     </div>
     <?php }else { 

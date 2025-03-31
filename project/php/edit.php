@@ -14,6 +14,9 @@ if(isset($_POST['fname']) &&
     $uname = $_POST['uname'];
     $old_pp = $_POST['old_pp'];
     $id = $_SESSION['id'];
+    $year = $_POST['year'];
+$course = $_POST['course'];
+$about = $_POST['about'];
 
     if (empty($fname)) {
     	$em = "Full name is required";
@@ -70,6 +73,21 @@ if(isset($_POST['fname']) &&
             header("Location: ../edit.php?error=$em&$data");
             exit;
          }
+
+// Update the SQL query for profile update
+$sql = "UPDATE users 
+SET fname=?, username=?, pp=?, year=?, course=?, about=?
+WHERE id=?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$fname, $uname, $new_img_name, $year, $course, $about, $id]);
+
+// Update the SQL query for profile update without pic
+$sql = "UPDATE users 
+SET fname=?, username=?, year=?, course=?, about=?
+WHERE id=?";
+$stmt = $conn->prepare($sql);
+$stmt->execute([$fname, $uname, $year, $course, $about, $id]);
+         
 
         
       }else {

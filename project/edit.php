@@ -70,6 +70,32 @@ $user = getUserById($_SESSION['id'], $conn);
                    name="old_pp"
                    value="<?=$user['pp']?>" >
           </div>
+
+          <div class="mb-3">
+  <label class="form-label">Year Level</label>
+  <select class="form-control" name="year">
+    <option value="">Select Year Level</option>
+    <option value="1st Year" <?php echo ($user['year'] == "1st Year")?"selected":"" ?>>1st Year</option>
+    <option value="2nd Year" <?php echo ($user['year'] == "2nd Year")?"selected":"" ?>>2nd Year</option>
+    <option value="3rd Year" <?php echo ($user['year'] == "3rd Year")?"selected":"" ?>>3rd Year</option>
+    <option value="4th Year" <?php echo ($user['year'] == "4th Year")?"selected":"" ?>>4th Year</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label">Course</label>
+  <select class="form-control" name="course">
+    <option value="">Select Course</option>
+    <option value="ACT" <?php echo ($user['course'] == "ACT")?"selected":"" ?>>ACT</option>
+    <option value="BSIS" <?php echo ($user['course'] == "BSIS")?"selected":"" ?>>BSIS</option>
+    <option value="BSCS" <?php echo ($user['course'] == "BSCS")?"selected":"" ?>>BSCS</option>
+  </select>
+</div>
+
+<div class="mb-3">
+  <label class="form-label">About Yourself</label>
+  <textarea class="form-control" name="about" rows="1"><?php echo $user['about'] ?></textarea>
+</div>
           
           <button type="submit" class="btn btn-primary">Update</button>
           <a href="home.php" class="link-secondary">Home</a>
